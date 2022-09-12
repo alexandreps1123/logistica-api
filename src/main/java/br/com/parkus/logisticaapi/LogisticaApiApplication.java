@@ -1,0 +1,13 @@
+package br.com.parkus.logisticaapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LogisticaApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LogisticaApiApplication.class, args);
+	}
+
+}
