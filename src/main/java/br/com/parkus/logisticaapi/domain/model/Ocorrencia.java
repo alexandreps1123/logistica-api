@@ -1,39 +1,27 @@
 package br.com.parkus.logisticaapi.domain.model;
 
-import javax.persistence.Column;
+import java.time.OffsetDateTime;
+
+import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import br.com.parkus.logisticaapi.domain.ValidationGroups;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Cliente {
-    
-    @NotNull(groups = ValidationGroups.ClienteId.class)
+public class Ocorrencia {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 60)
-    private String nome;
+    @ManyToOne
+    private Entrega entrega;
 
-    @NotBlank
-    @Email
-    @Size(max = 255)
-    private String email;
+    private String descricao;
+    private OffsetDateTime dataRegistro;
 
-    @NotBlank
-    @Size(max = 20)
-    @Column(name = "fone")
-    private String telefone;
-    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -41,6 +29,7 @@ public class Cliente {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -49,7 +38,7 @@ public class Cliente {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cliente other = (Cliente) obj;
+        Ocorrencia other = (Ocorrencia) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -61,27 +50,33 @@ public class Cliente {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+
+    public Entrega getEntrega() {
+        return entrega;
     }
 
-    
+    public void setEntrega(Entrega entrega) {
+        this.entrega = entrega;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public OffsetDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(OffsetDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
 }
